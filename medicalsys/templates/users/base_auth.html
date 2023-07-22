@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="d-none col-md-6 col-lg-7 p-5 vh-100 d-md-flex align-items-center"
+    >
+      <div class="container">
+        <h1 class="display-4">MedicalSys</h1>
+        <p class="lead">Plataforma de agendamentos de consultas</p>
+      </div>
+    </div>
+    <div
+      class="col-md-6 col-lg-5 vh-100 d-flex align-items-center justify-content-center"
+    >
+      <div class="shadow col-12 col-sm-6 col-md-10 p-4 py-5 bg-body-tertiary rounded">
+        <h3 class="display-6 text-center mb-3">MedicalSys</h3>
+        {% block auth_content %} {% endblock auth_content %}
+        {% include 'shared/alerts.html' %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 center"></div>
+  </div>
+</div>
+
+{% endblock content %}

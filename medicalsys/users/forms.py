@@ -8,7 +8,7 @@ class RegisterUserForms(forms.Form):
         max_length=100,
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Nome'
+                'class': "form-control"
             }
         )
     )
@@ -18,7 +18,7 @@ class RegisterUserForms(forms.Form):
         max_length=100,
         widget=forms.EmailInput(
             attrs={
-                'placeholder': 'Email',
+                'class': "form-control"
             }
         )
     )
@@ -28,7 +28,7 @@ class RegisterUserForms(forms.Form):
         max_length=100,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': 'Digite a sua senha',
+                'class': "form-control",
                 'minlength': 6,
             }
         ),
@@ -39,7 +39,7 @@ class RegisterUserForms(forms.Form):
         max_length=100,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': 'Digite a sua senha novamente',
+                'class': "form-control",
                 'minlength': 6,
             }
         ),
@@ -53,7 +53,7 @@ class LoginUserForms(forms.Form):
         max_length=100,
         widget=forms.EmailInput(
             attrs={
-                'placeholder': 'Email',
+                'class': "form-control"
             }
         )
     )
@@ -63,8 +63,8 @@ class LoginUserForms(forms.Form):
         max_length=100,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': 'Digite a sua senha',
                 'minlength': 6,
+                'class': "form-control"
             }
         ),
     )
