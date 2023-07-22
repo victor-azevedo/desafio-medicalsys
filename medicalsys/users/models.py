@@ -33,18 +33,19 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class User(AbstractUser):
-    DOCTOR = 1
-    ROLE_CHOICES = (
-        (DOCTOR, 'Doctor'),
-    )
+DOCTOR = 1
+ROLE_CHOICES = (
+    (DOCTOR, 'Doctor'),
+)
 
+
+class User(AbstractUser):
     username = None
     date_joined = None
     name = models.CharField('user name', max_length=255)
     email = models.EmailField('email address', max_length=255, unique=True)
     role = models.PositiveSmallIntegerField(
-        choices=ROLE_CHOICES, blank=True, null=True)
+        choices=ROLE_CHOICES, blank=True, null=True, default=DOCTOR)
     created_at = models.DateTimeField(default=timezone.now)
 
     objects = UserManager()
