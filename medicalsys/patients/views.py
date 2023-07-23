@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 
 from .forms import PatientForm
+from .models import Patient
 
 
 def create_patient(request):
@@ -18,3 +19,9 @@ def create_patient(request):
         form = PatientForm()
         context = {'form': form}
         return render(request, 'patients/add.html', context)
+
+
+def list_patients(request):
+    patients = Patient.objects.all()
+    context = {'patients': patients}
+    return render(request, 'patients/list.html', context)
