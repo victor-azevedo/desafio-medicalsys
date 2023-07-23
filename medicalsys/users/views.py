@@ -45,7 +45,8 @@ def login(request):
 
     else:
         form = LoginUserForms()
-        return render(request, 'users/login.html', {'form': form})
+        context = {'form': form}
+        return render(request, 'users/login.html', context)
 
 
 @anonymous_required
@@ -77,7 +78,8 @@ def register(request):
 
     else:
         form = RegisterUserForms()
-        return render(request, 'users/register.html', {'form': form})
+        context = {'form': form}
+        return render(request, 'users/register.html', context)
 
 
 def logout(request):
