@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<header>
+  <nav class="navbar shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand px-3" href="#">MedicalSys</a>
+      <div class="dropdown mx-5">
+        <div
+          class="nav-link dropdown-toggle"
+          role="button"
+          data-bs-toggle="dropdown"
+        >
+          {{ user.name|capfirst}}
+        </div>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
+          <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="vh-100">
+  <div class="container-fluid h-100">
+    <div class="row main-dashboard">      
+      <div class="col-md-3 d-flex flex-column flex-shrink-0 p-3 shadow">
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a
+              href="{% url 'home' %}"
+              class="nav-link text-dark {% if request.path|length == 1 %}active{% endif %}"
+              >Home</a
+            >
+          </li>
+          <li role="presentation" class="dropdown nav-item">
+            <a class="dropdown-toggle nav-link text-dark {% if "/patients/" in request.path %}active{% endif %}" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              Pacientes
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" type="button" href="{% url 'create_patient' %}">Adicionar</a></li>
+            </ul>
+          </li>          
+                 
+        </ul>
+      </div>
+
+      <div class="col-md-9 p-5">
+        {% block dashboard_content%}
+        {% endblock dashboard_content %}
+      </div>
+      
+    </div>
+  </div>
+</main>
+
+{% endblock content %}

@@ -1,48 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'base_dashboard.html' %}
 
-{% block content %}
+{% block dashboard_content %}
 
-<header>
-  <nav class="navbar fixed-top shadow">
-    <div class="container-fluid">
-      <a class="navbar-brand px-3" href="#">MedicalSys</a>
-      <div class="dropdown mx-5">
-        <div
-          class="nav-link dropdown-toggle"
-          role="button"
-          data-bs-toggle="dropdown"
-        >
-          Usuário
-        </div>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
-          <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+<div>MedicalSys Dashboard</div>
 
-<main class="vh-100">
-  <div class="container-fluid h-100">
-    <div class="row main-dashboard">
-      <div class="col-md-3 d-flex flex-column flex-shrink-0 p-3 shadow">
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link text-dark active">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-dark">Pacientes</a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-dark">Agendamentos</a>
-          </li>
-        </ul>
-      </div>
-      
-    </div>
-  </div>
-</main>
-
-
-{% endblock content %}
+{% endblock dashboard_content %}
