@@ -6,7 +6,7 @@ class Patient(models.Model):
     name = models.CharField('patient name', max_length=100)
     phone = models.CharField('phone number', max_length=14)
     address = models.CharField('address', max_length=255)
-    number = models.CharField('address number', max_length=100)
+    address_number = models.CharField('address number', max_length=100)
     city = models.CharField('city', max_length=100)
     uf = models.CharField('UF', max_length=2)
     country = models.CharField('country', max_length=100)
