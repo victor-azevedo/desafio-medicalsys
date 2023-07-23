@@ -38,6 +38,7 @@ def login(request):
             )
             if user is not None:
                 auth.login(request, user)
+                messages.success(request, 'Login realizado com sucesso!')
                 return redirect('home')
             else:
                 messages.error(request, 'Usuário e/ou senha inválidos!')
