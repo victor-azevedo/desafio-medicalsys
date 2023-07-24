@@ -9,12 +9,11 @@
   
   <div class="col-12 d-flex justify-content-between ">
     <div class="flex-grow-0">
-      <a href="{% url 'home' %}"  class="btn btn-secondary">Cancela</a>
+      <a href="{% url 'list_patients' %}"  class="btn btn-secondary">Cancela</a>
       <a href="{% url 'create_patient' %}" class="btn btn-secondary">Limpar</a>
     </div>
     <button type="submit" class="btn btn-primary" id="liveToastBtn">Cadastrar Paciente</button>
   </div>
-  <button type="button" class="btn btn-primary" >Show live toast</button>
 </form>
 
 {% endblock dashboard_content %}

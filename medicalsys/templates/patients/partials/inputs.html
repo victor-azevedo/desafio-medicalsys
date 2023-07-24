@@ -1,7 +1,5 @@
 <div class="col-md-12">
-  <label for="{{ form.name.id_for_label }}" class="form-label"
-    >{{ form.name.label }}</label
-  >
+  <label for="{{ form.name.id_for_label }}" class="form-label">{{ form.name.label }}</label>
   {{ form.name }}
 </div>
 
@@ -39,3 +37,42 @@
   <label for="{{ form.country.id_for_label }}" class="form-label">{{ form.country.label }}</label>
   {{ form.country }}
 </div>
+
+<!-- Inputs masks -->
+<script>
+  // Phone mask
+  $(document).ready(function () {
+    const mobileMask = "(00) 00009-0000";
+    const landlineMask = "(00) 0000-0000";
+
+    $("#id_phone").mask(mobileMask);
+
+    $("#id_phone").keyup(function (event) {
+      const len = $(this).val().length;
+
+      const isMobile = $(this).val().substring(5, 6) == 9;
+
+      if (!isMobile && len < 14) {
+        this.setCustomValidity("Please use at least 14 characters")
+
+      } else if (isMobile && len < 15) {
+        this.setCustomValidity("Please use at least 15 characters")
+
+      } else {
+        this.setCustomValidity("")
+      }
+
+
+      if (isMobile) {
+        $(this).mask(mobileMask);
+      } else {
+        $(this).mask(landlineMask);
+      }
+    });
+  });
+
+  // CEP mask
+  $(document).ready(function () {
+    $("#id_cep").mask("00000-000");
+  });
+</script>

@@ -1,6 +1,8 @@
 {% extends 'base_dashboard.html' %}
 {% block dashboard_content %}
 
+<a href="{% url 'create_patient' %}" class="btn btn-primary my-2" >Adicionar Paciente</a>
+
 {% if patients %}
 <table class="table table-striped">
   <thead class="container-fluid">
