@@ -16,6 +16,10 @@ def create_patient(request):
             form = PatientForm()
             messages.success(request, 'Paciente cadastrado com sucesso!')
             return redirect('list_patients')
+        else:
+            messages.error(request, 'Dados inválidos!')
+            context = {'form': form}
+            return render(request, 'patients/add.html', context)
 
     else:
         form = PatientForm()

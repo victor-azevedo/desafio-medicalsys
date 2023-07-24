@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Patient(models.Model):
     name = models.CharField('patient name', max_length=100)
-    phone = models.CharField('phone number', max_length=14)
+    phone = models.CharField('phone number', max_length=15)
     address = models.CharField('address', max_length=255)
     address_number = models.CharField('address number', max_length=100)
     city = models.CharField('city', max_length=100)
