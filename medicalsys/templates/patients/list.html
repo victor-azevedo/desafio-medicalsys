@@ -16,7 +16,7 @@
       <td class="col-3">{{ patient.phone }}</td>
       <td class="col-3">{{ patient.city }}</td>
       <td class="col-2 d-flex justify-content-around">
-        <a href="#" >
+        <a href="{% url 'edit_patient' pk=patient.id %}" >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
