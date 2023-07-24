@@ -8,7 +8,7 @@ class RegisterUserForms(forms.Form):
         max_length=100,
         widget=forms.TextInput(
             attrs={
-                'class': "form-control"
+                'class': 'form-control'
             }
         )
     )
@@ -18,7 +18,7 @@ class RegisterUserForms(forms.Form):
         max_length=100,
         widget=forms.EmailInput(
             attrs={
-                'class': "form-control"
+                'class': 'form-control'
             }
         )
     )
@@ -28,7 +28,7 @@ class RegisterUserForms(forms.Form):
         max_length=100,
         widget=forms.PasswordInput(
             attrs={
-                'class': "form-control",
+                'class': 'form-control',
                 'minlength': 6,
             }
         ),
@@ -39,7 +39,7 @@ class RegisterUserForms(forms.Form):
         max_length=100,
         widget=forms.PasswordInput(
             attrs={
-                'class': "form-control",
+                'class': 'form-control',
                 'minlength': 6,
             }
         ),
@@ -53,7 +53,7 @@ class LoginUserForms(forms.Form):
         max_length=100,
         widget=forms.EmailInput(
             attrs={
-                'class': "form-control"
+                'class': 'form-control'
             }
         )
     )
@@ -64,7 +64,7 @@ class LoginUserForms(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'minlength': 6,
-                'class': "form-control"
+                'class': 'form-control'
             }
         ),
     )
