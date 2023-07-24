@@ -15,8 +15,13 @@
   </thead>
   <tbody class="container-fluid table-group-divider">
     {% for patient in patients %}
-    <tr class="row">
-      <td class="col-4">{{ patient.name }}</td>
+    <tr class="row">      
+        <td class="col-4">
+          <a href="{% url 'patient_id' pk=patient.id %}" >
+          {{ patient.name }}
+          </a>
+        </td>
+  
       <td class="col-3">{{ patient.phone }}</td>
       <td class="col-3">{{ patient.city }}</td>
       <td class="col-2 d-flex gap-4">

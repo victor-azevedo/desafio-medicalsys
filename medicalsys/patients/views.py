@@ -65,3 +65,10 @@ def delete_patient(request, pk):
     else:
         context = {'patient': patient}
         return render(request, 'patients/delete.html', context)
+
+
+@login_required
+def patient_id(request, pk):
+    patient = get_object_or_404(Patient, id=pk)
+    context = {'patient': patient}
+    return render(request, 'patients/id.html', context)
