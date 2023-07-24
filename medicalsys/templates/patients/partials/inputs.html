@@ -111,10 +111,10 @@
       const len = $("#id_cep").val().length;
 
       if (len < 9) {
-        $("#id_phone")[0].setCustomValidity("Please use at least 9 characters")
+        $("#id_cep")[0].setCustomValidity("Please use at least 9 characters")
 
       } else {
-        $("#id_phone")[0].setCustomValidity("")
+        $("#id_cep")[0].setCustomValidity("")
       }
     }
   });
