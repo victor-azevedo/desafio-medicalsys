@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from .forms import ScheduleForm
+from .models import Schedule
 
 
 @login_required
@@ -24,3 +25,10 @@ def create_schedule(request):
         form = ScheduleForm()
         context = {'form': form}
         return render(request, 'schedule/add.html', context)
+
+
+@login_required
+def list_schedules(request):
+    schedules = Schedule.objects.all()
+    context = {'schedules': schedules}
+    return render(request, 'schedule/list.html', context)
