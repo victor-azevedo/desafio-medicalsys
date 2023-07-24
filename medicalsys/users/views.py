@@ -139,6 +139,18 @@ def edit_user(request):
         return render(request, 'users/edit.html', context)
 
 
+@login_required
+def delete_user(request):
+    user = request.user
+    if request.method == 'POST':
+        user.delete()
+        messages.success(request, 'Conta encerrada com sucesso!')
+        return redirect('home')
+
+    else:
+        return render(request, 'users/delete.html')
+
+
 def checkPasswordFormOrRedirect(request, password, password_confirm):
     if password != password_confirm:
         messages.error(request, 'Senhas devem ser iguais!')
