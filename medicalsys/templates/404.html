@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main>
+  <div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+        <h1 class="display-1 fw-bold">404</h1>
+        <p class="fs-3"> Opps! Página não encontrada</p>
+        <p class="lead">
+            A pagina que você procura não existe
+          </p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Ir para página principal</a>
+    </div>
+</div>
+</main>
+
+{% endblock content %}
