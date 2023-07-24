@@ -22,8 +22,9 @@
 </div>
 {% endif %}
 
+<!-- Toast Show-->
 <script>
-  const toastLive = document.getElementById('liveToast')
-  const toast = new bootstrap.Toast(toastLive)
-  toast.show()
+  $(document).ready(function () {
+    $('#liveToast').toast("show")
+  })
 </script>
