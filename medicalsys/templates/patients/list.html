@@ -1,5 +1,7 @@
-{% extends 'base_dashboard.html' %} {% block dashboard_content %}
+{% extends 'base_dashboard.html' %}
+{% block dashboard_content %}
 
+{% if patients %}
 <table class="table table-striped">
   <thead class="container-fluid">
     <tr class="row">
@@ -15,7 +17,7 @@
       <td class="col-4">{{ patient.name }}</td>
       <td class="col-3">{{ patient.phone }}</td>
       <td class="col-3">{{ patient.city }}</td>
-      <td class="col-2 d-flex justify-content-around">
+      <td class="col-2 d-flex gap-4">
         <a href="{% url 'edit_patient' pk=patient.id %}" >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +36,7 @@
             />
           </svg>
         </a>
-        <a href="#" class="text-danger"
+        <a href="{% url 'delete_patient' pk=patient.id %}" class="text-danger"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -56,5 +58,12 @@
     {% endfor %}
   </tbody>
 </table>
+
+{% else %}
+
+<p>Sem Pacientes cadastrados</p>
+
+{% endif %}
+
 
 {% endblock dashboard_content %}

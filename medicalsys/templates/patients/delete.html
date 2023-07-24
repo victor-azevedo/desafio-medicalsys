@@ -1,0 +1,22 @@
+{% extends 'base_dashboard.html' %}
+{% block dashboard_content %}
+
+<div class="row justify-content-center">
+  <div class="col-sm-8 col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Apagar paciente '{{patient.name}}'</h5>
+        <p class="card-text">Deseja realmente deletar '{{patient.name}}'?</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="{% url 'list_patients' %}" class="btn btn-secondary">Cancela</a>
+          <form action="{% url 'delete_patient' pk=patient.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Apagar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock dashboard_content %}
