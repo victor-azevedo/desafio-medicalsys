@@ -52,3 +52,17 @@ def edit_schedule(request, pk):
         form = ScheduleForm(instance=schedule)
         context = {'form': form, 'schedule': schedule}
         return render(request, 'schedule/edit.html', context)
+
+
+@login_required
+def delete_schedule(request, pk):
+    schedule = get_object_or_404(Schedule, id=pk)
+
+    if request.method == 'POST':
+        schedule.delete()
+        messages.success(request, 'Agendamento deletado com sucesso!')
+        return redirect('list_schedules')
+
+    else:
+        context = {'schedule': schedule}
+        return render(request, 'schedule/delete.html', context)

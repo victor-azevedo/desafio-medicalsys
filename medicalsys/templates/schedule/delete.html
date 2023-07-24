@@ -1,0 +1,25 @@
+{% extends 'base_dashboard.html' %}
+{% block dashboard_content %}
+
+<div class="row justify-content-center">
+  <div class="col-sm-8 col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Apagar agendamento</h5>
+        <p class="card-text">Deseja realmente deletar este agendamento?</p>
+        <p class="card-text">{{ schedule.date }}</p>
+        <p class="card-text">Médico: {{ schedule.doctor }}</p>
+        <p class="card-text">Paciente: {{ schedule.patient }}</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="{% url 'list_schedules' %}" class="btn btn-secondary">Cancela</a>
+          <form action="{% url 'delete_schedule' pk=schedule.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Apagar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock dashboard_content %}
