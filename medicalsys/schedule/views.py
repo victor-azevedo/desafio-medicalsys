@@ -66,3 +66,10 @@ def delete_schedule(request, pk):
     else:
         context = {'schedule': schedule}
         return render(request, 'schedule/delete.html', context)
+
+
+@login_required
+def schedule_id(request, pk):
+    schedule = get_object_or_404(Schedule, id=pk)
+    context = {'schedule': schedule}
+    return render(request, 'schedule/id.html', context)
