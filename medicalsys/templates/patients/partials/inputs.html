@@ -67,32 +67,56 @@
     $("#id_phone").mask(mobileMask);
 
     $("#id_phone").keyup(function (event) {
-      const len = $(this).val().length;
-
       const isMobile = $(this).val().substring(5, 6) == 9;
 
+      phoneLengthValidation(isMobile)
+
+      setPhoneMask(isMobile)
+    });
+
+    // Bypass HTML minlength validation because mask use
+    function phoneLengthValidation(isMobile) {
+      const len = $("#id_phone").val().length;
+
       if (!isMobile && len < 14) {
-        this.setCustomValidity("Please use at least 14 characters")
+        $("#id_phone")[0].setCustomValidity("Please use at least 14 characters")
 
       } else if (isMobile && len < 15) {
-        this.setCustomValidity("Please use at least 15 characters")
+        $("#id_phone")[0].setCustomValidity("Please use at least 15 characters")
 
       } else {
-        this.setCustomValidity("")
+        $("#id_phone")[0].setCustomValidity("")
       }
+    }
 
-
+    function setPhoneMask(isMobile) {
       if (isMobile) {
-        $(this).mask(mobileMask);
+        $("#id_phone").mask(mobileMask);
       } else {
-        $(this).mask(landlineMask);
+        $("#id_phone").mask(landlineMask);
       }
-    });
+    }
   });
 
   // CEP mask
   $(document).ready(function () {
     $("#id_cep").mask("00000-000");
+
+    $("#id_cep").keyup(function (event) {
+      cepLengthValidation()
+    })
+
+    // Bypass HTML minlength validation because mask use
+    function cepLengthValidation(length) {
+      const len = $("#id_cep").val().length;
+
+      if (len < 9) {
+        $("#id_phone")[0].setCustomValidity("Please use at least 9 characters")
+
+      } else {
+        $("#id_phone")[0].setCustomValidity("")
+      }
+    }
   });
 </script>
 
