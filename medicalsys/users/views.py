@@ -42,7 +42,8 @@ def login(request):
                 return redirect('home')
             else:
                 messages.error(request, 'Usuário e/ou senha inválidos!')
-                return redirect('login')
+                context = {'form': form}
+                return render(request, 'users/login.html', context)
 
     else:
         form = LoginUserForms()
@@ -56,17 +57,21 @@ def register(request):
         form = RegisterUserForms(request.POST)
 
         if form.is_valid():
-            if form["password"].value() != form["password_confirm"].value():
-                messages.error(request, 'Senhas devem ser iguais!')
-                return redirect('register')
-
             name = form['name'].value()
             email = form['email'].value()
             password = form['password'].value()
+            password_confirm = form['password_confirm'].value()
+
+            password_redirect = checkPasswordFormOrRedirect(
+                request, password, password_confirm)
+            if password_redirect:
+                return password_redirect
 
             if User.objects.filter(email=email).exists():
-                messages.error(request, 'Usuário já existente!')
-                return redirect('register')
+                messages.error(
+                    request, f'Email {email} já em uso por outro usuário!')
+                context = {'form': form}
+                return render(request, 'users/register.html', context)
 
             user = User.objects.create_user(
                 name=name,
@@ -92,3 +97,49 @@ def logout(request):
 @login_required
 def home(request):
     return render(request, 'dashboard.html')
+
+
+@login_required
+def edit_user(request):
+    user = request.user
+    if request.method == 'POST':
+        form = RegisterUserForms(request.POST)
+
+        if form.is_valid():
+            name = form['name'].value()
+            email = form['email'].value()
+            password = form['password'].value()
+            password_confirm = form['password_confirm'].value()
+
+            password_redirect = checkPasswordFormOrRedirect(
+                request, password, password_confirm)
+            if password_redirect:
+                return password_redirect
+
+            if User.objects.filter(email=email).exclude(id=user.id).exists():
+                messages.error(
+                    request, f'Email {email} já em uso por outro usuário!')
+                context = {'form': form}
+                return render(request, 'users/edit.html', context)
+
+            user.name = name
+            user.email = email
+            user.set_password(password)
+            user.save()
+            auth.login(request, user)
+
+            form = RegisterUserForms()
+            messages.success(request, 'Usuário atualizado com sucesso!')
+            return redirect('home')
+
+    else:
+        form = RegisterUserForms(
+            initial={'name': user.name, 'email': user.email})
+        context = {'form': form}
+        return render(request, 'users/edit.html', context)
+
+
+def checkPasswordFormOrRedirect(request, password, password_confirm):
+    if password != password_confirm:
+        messages.error(request, 'Senhas devem ser iguais!')
+        return redirect('register')

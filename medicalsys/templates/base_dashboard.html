@@ -14,7 +14,7 @@
           {{ user.name|capfirst}}
         </div>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
+          <li><a class="dropdown-item" href="{% url 'edit_user' %}">Editar Perfil</a></li>
           <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
         </ul>
       </div>
