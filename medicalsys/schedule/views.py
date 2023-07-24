@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import ScheduleForm
 from .models import Schedule
@@ -32,3 +32,23 @@ def list_schedules(request):
     schedules = Schedule.objects.all()
     context = {'schedules': schedules}
     return render(request, 'schedule/list.html', context)
+
+
+@login_required
+def edit_schedule(request, pk):
+    schedule = get_object_or_404(Schedule, id=pk)
+    print(schedule.date)
+
+    if request.method == 'POST':
+        form = ScheduleForm(request.POST, instance=schedule)
+
+        if form.is_valid():
+            form.save()
+            form = ScheduleForm()
+            messages.success(request, 'Agendamento atualizado com sucesso!')
+            return redirect('list_schedules')
+
+    else:
+        form = ScheduleForm(instance=schedule)
+        context = {'form': form, 'schedule': schedule}
+        return render(request, 'schedule/edit.html', context)
