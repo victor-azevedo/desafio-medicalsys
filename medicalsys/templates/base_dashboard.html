@@ -34,16 +34,20 @@
               >Home</a
             >
           </li>
-          <li role="presentation" class="dropdown nav-item">
-            <a class="dropdown-toggle nav-link text-dark {% if "/patients/" in request.path %}active{% endif %}" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
-              Pacientes
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" type="button" href="{% url 'list_patients' %}">Listar</a></li>
-              <li><a class="dropdown-item" type="button" href="{% url 'create_patient' %}">Adicionar</a></li>
-            </ul>
-          </li>          
-                 
+          <li class="nav-item">
+            <a
+              href="{% url 'list_patients' %}"
+              class="nav-link text-dark {% if "/patients/" in request.path %}active{% endif %}"
+              >Pacientes</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="{% url 'create_schedule' %}"
+              class="nav-link text-dark {% if "/schedule/" in request.path %}active{% endif %}"
+              >Agendamentos</a
+            >
+          </li>
         </ul>
       </div>
 

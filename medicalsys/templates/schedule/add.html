@@ -1,0 +1,24 @@
+{% extends 'base_dashboard.html' %}
+{% block dashboard_content %}
+
+<h2>Agendamento</h2>
+<form class="row g-3" action="{% url 'create_schedule' %}" method="POST">
+  {% csrf_token %}
+
+  {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+{% endfor %}
+  
+  <div class="col-12 d-flex justify-content-between ">
+    <div class="flex-grow-0">
+      <a href="{% url 'home' %}"  class="btn btn-secondary">Cancela</a>
+      <a href="{% url 'create_schedule' %}" class="btn btn-secondary">Limpar</a>
+    </div>
+    <button type="submit" class="btn btn-primary" id="liveToastBtn">Agendar</button>
+  </div>
+</form>
+
+{% endblock dashboard_content %}
