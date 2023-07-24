@@ -38,6 +38,25 @@
   {{ form.country }}
 </div>
 
+<!-- Modal CEP error-->
+<div class="modal fade" id="cepErrorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="cepErrorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="cepErrorModalLabel">CEP inválido</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Verifique se o CEP é válido!!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Inputs masks -->
 <script>
   // Phone mask
@@ -75,4 +94,62 @@
   $(document).ready(function () {
     $("#id_cep").mask("00000-000");
   });
+</script>
+
+<!-- Fetch CEP -->
+<script>
+  $(document).ready(function () {
+    let previousCepValue = "";
+
+    $("#id_cep").keyup(function (event) {
+      const cep = $(this).val();
+      const cepNumeric = cep.replace(/\D/g, '');
+
+      const hasCepChanged = cepNumeric !== previousCepValue
+
+      if (hasCepChanged && cepNumeric.length === 8) {
+        previousCepValue = cepNumeric;
+
+        getAddressInfo(cepNumeric)
+      }
+    })
+
+    function getAddressInfo(cep) {
+      $.get("https://viacep.com.br/ws/" + cep + "/json/", function (data) {
+        if (!data.erro) {
+          autoFillAddressFields(data)
+
+          focusToAddressNumberField()
+        } else {
+          openCepErrorModal()
+
+          cleanAddressFields()
+        }
+      });
+    }
+
+    function autoFillAddressFields(data) {
+      $("#id_address").val(data.logradouro)
+      $("#id_city").val(data.localidade)
+      $("#id_uf").val(data.uf)
+      $("#id_country").val("Brasil")
+    }
+
+    function focusToAddressNumberField() {
+      $("#id_address_number").val("")
+      $("#id_address_number").focus()
+    }
+
+    function openCepErrorModal() {
+      $("#cepErrorModal").modal("show")
+    }
+
+    function cleanAddressFields() {
+      $("#id_address").val("")
+      $("#id_address_number").val("")
+      $("#id_city").val("")
+      $("#id_uf").val("")
+      $("#id_country").val("")
+    }
+  })
 </script>
