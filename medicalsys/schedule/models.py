@@ -26,3 +26,6 @@ class Schedule(models.Model):
 
     def __str__(self):
         return f'D: {self.doctor} - P: {self.patient} - {self.date}'
+
+    def status_label(self):
+        return dict(Schedule.STATUS_CHOICES)[self.status]

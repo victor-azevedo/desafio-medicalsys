@@ -19,13 +19,13 @@
     <tr class="row">      
       <td class="col-2">
         <a href="{% url 'schedule_id' pk=schedule.id %}" >
-        {{ schedule.date }}
+        {{ schedule.date|date }}
         </a>
       </td>
   
       <td class="col-3">{{ schedule.doctor }}</td>
       <td class="col-3">{{ schedule.patient }}</td>
-      <td class="col-2">{{ schedule.status }}</td>
+      <td class="col-2">{{ schedule.status_label }}</td>
       <td class="col-2 d-flex gap-4">
         <a href="{% url 'edit_schedule' pk=schedule.id %}" >
           <svg
