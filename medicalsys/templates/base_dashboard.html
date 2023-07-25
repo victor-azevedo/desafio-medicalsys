@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
 <header>
   <nav class="navbar shadow">
     <div class="container-fluid">
-      <a class="navbar-brand px-3" href="#">MedicalSys</a>
+      <a class="navbar-brand px-3" href="{% url 'home' %}">MedicalSys</a>
       <div class="dropdown mx-5">
         <div
           class="nav-link dropdown-toggle"
