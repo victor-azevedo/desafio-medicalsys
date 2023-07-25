@@ -32,7 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://desafio-medicalsys-production.up.railway.app/']
+    'https://desafio-medicalsys-production.up.railway.app', 'https://www.desafio-medicalsys-production.up.railway.app']
 
 # Application definition
 
