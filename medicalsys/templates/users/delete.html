@@ -1,18 +1,21 @@
 {% extends 'base_dashboard.html' %}
+
 {% block dashboard_content %}
 
 <div class="row justify-content-center">
   <div class="col-sm-8 col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Encerrar conta '{{user.name}}'</h5>
+        <h5 class="card-title my-3">Encerrar conta '{{user.name|capfirst}}'</h5>
         <p class="card-text">Deseja realmente encerrar sua conta?</p>
+        <p class="card-text">Nome: {{ user.name }}</p>
+        <p class="card-text">Email: {{ user.email }}</p>
         <div class="d-flex justify-content-center gap-3">
-          <a href="{% url 'edit_user' %}" class="btn btn-secondary">Cancela</a>
           <form action="{% url 'delete_user' %}" method="POST">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Encerrar Conta</button>
+            <button type="submit" class="btn btn-danger">Apagar</button>
           </form>
+          <a href="{% url 'edit_user' %}" class="btn btn-secondary">Cancela</a>
         </div>
       </div>
     </div>

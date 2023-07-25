@@ -1,28 +1,34 @@
 {% extends 'base_dashboard.html' %}
+
 {% block dashboard_content %}
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 p-4 py-5 bg-body-tertiary rounded">
-      <h2>Paciente '{{ patient.name }}'</h2>
-      <p><span class="fw-bold">Código: </span>{{ patient.id }}</p>
-      <p><span class="fw-bold">Nome: </span>{{ patient.name }}</p>
-      <p><span class="fw-bold">Telefone: </span>{{ patient.phone }}</p>
-      <p><span class="fw-bold">Endereço: </span>{{ patient.address }}</p>
-      <p><span class="fw-bold">Número: </span>{{ patient.address_number }}</p>
-      <p><span class="fw-bold">Cidade: </span>{{ patient.city }}</p>
-      <p><span class="fw-bold">UF: </span>{{ patient.uf }}</p>
-      <p><span class="fw-bold">País: </span>{{ patient.country }}</p>
-      <p><span class="fw-bold">Registrado em:</span>{{ patient.created_at }}</p>
-      <div class="col-12 d-flex justify-content-between">
-        <a href="{% url 'delete_patient' pk=patient.id %}" class="btn btn-danger">Apagar</a>
-        <div class="d-flex gap-3">
-          <div >
-            <a href="{% url 'edit_patient' pk=patient.id %}" class="btn btn-secondary">Editar</a>
-            <a href="{% url 'list_patients' %}" class="btn btn-secondary">Cancela</a>
-          </div>
-        </div>
-      </div>      
+<div class="row">
+  <div class="col-12 p-4 py-5 bg-body-tertiary rounded">
+    <h2 class="my-3">Paciente '{{ patient.name|capfirst }}':</h2>
+    <p><span class="fw-bold">Código: </span>
+      {{ patient.id }}</p>
+    <p><span class="fw-bold">Nome: </span>
+      {{ patient.name }}</p>
+    <p><span class="fw-bold">Telefone: </span>
+      {{ patient.phone }}</p>
+    <p><span class="fw-bold">Endereço: </span>
+      {{ patient.address }}</p>
+    <p><span class="fw-bold">Número: </span>
+      {{ patient.address_number }}</p>
+    <p><span class="fw-bold">Cidade: </span>
+      {{ patient.city }}</p>
+    <p><span class="fw-bold">UF: </span>
+      {{ patient.uf }}</p>
+    <p><span class="fw-bold">País: </span>
+      {{ patient.country }}</p>
+    <p><span class="fw-bold">Registrado em: </span>
+      {{ patient.created_at }}</p>
+    <div class="d-flex justify-content-between flex-wrap">
+      <a href="{% url 'delete_patient' pk=patient.id %}" class="btn btn-danger my-2">Apagar</a>
+      <div class="d-flex gap-3 my-2">
+        <a href="{% url 'list_patients' %}" class="btn btn-secondary">Cancela</a>
+        <a href="{% url 'edit_patient' pk=patient.id %}" class="btn btn-secondary">Editar</a>
+      </div>
     </div>
   </div>
 </div>

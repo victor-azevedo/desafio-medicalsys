@@ -1,26 +1,30 @@
 {% extends 'base_dashboard.html' %}
+
 {% block dashboard_content %}
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 p-4 py-5 bg-body-tertiary rounded">
-      <h2>Agendamento:</h2>
-      <p><span class="fw-bold">Código: </span>{{ schedule.id }}</p>
-      <p><span class="fw-bold">Data: </span>{{ schedule.date }}</p>
-      <p><span class="fw-bold">Médico: </span>{{ schedule.doctor|capfirst }}</p>
-      <p><span class="fw-bold">Paciente: </span>{{ schedule.patient|capfirst }}</p>
-      <p><span class="fw-bold">Status: </span>{{ schedule.status }}</p>
-      <p><span class="fw-bold">Descrição: </span>{{ schedule.description }}</p>
-      <p><span class="fw-bold">Registrado em: </span>{{ schedule.created_at }}</p>
-      <div class="col-12 d-flex justify-content-between">
-        <a href="{% url 'delete_schedule' pk=schedule.id %}" class="btn btn-danger">Apagar</a>
-        <div class="d-flex gap-3">
-          <div >
-            <a href="{% url 'edit_schedule' pk=schedule.id %}" class="btn btn-secondary">Editar</a>
-            <a href="{% url 'list_schedules' %}" class="btn btn-secondary">Cancela</a>
-          </div>
-        </div>
-      </div>      
+<div class="row">
+  <div class="col-12 p-4 py-5 bg-body-tertiary rounded">
+    <h2 class="my-3">Agendamento:</h2>
+    <p><span class="fw-bold">Código: </span>
+      {{ schedule.id }}</p>
+    <p><span class="fw-bold">Data: </span>
+      {{ schedule.date }}</p>
+    <p><span class="fw-bold">Médico: </span>
+      {{ schedule.doctor|capfirst }}</p>
+    <p><span class="fw-bold">Paciente: </span>
+      {{ schedule.patient|capfirst }}</p>
+    <p><span class="fw-bold">Status: </span>
+      {{ schedule.status }}</p>
+    <p><span class="fw-bold">Descrição: </span>
+      {{ schedule.description }}</p>
+    <p><span class="fw-bold">Registrado em: </span>
+      {{ schedule.created_at }}</p>
+    <div class="d-flex justify-content-between flex-wrap">
+      <a href="{% url 'delete_schedule' pk=schedule.id %}" class="btn btn-danger my-2">Apagar</a>
+      <div class="d-flex gap-3 my-2">
+        <a href="{% url 'list_schedules' %}" class="btn btn-secondary">Cancela</a>
+        <a href="{% url 'edit_schedule' pk=schedule.id %}" class="btn btn-secondary">Editar</a>
+      </div>
     </div>
   </div>
 </div>

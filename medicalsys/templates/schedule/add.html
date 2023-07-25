@@ -1,23 +1,24 @@
 {% extends 'base_dashboard.html' %}
+
 {% block dashboard_content %}
 
 <h2>Agendamento</h2>
-<form class="row g-3" action="{% url 'create_schedule' %}" method="POST">
+<form class="row g-3 my-3" action="{% url 'create_schedule' %}" method="POST">
   {% csrf_token %}
 
   {% for field in form %}
-    <div class="col-12">
-        {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
+  <div class="col-12">
+    {{ field.errors }}
+    {{ field.label_tag }} {{ field }}
+  </div>
+  {% endfor %}
+
+  <div class="col-12 d-flex justify-content-between flex-wrap gap-2">
+    <div class="flex-grow-0 my-2">
+      <a href="{% url 'list_patients' %}" class="btn btn-secondary">Cancela</a>
+      <a href="{% url 'create_patient' %}" class="btn btn-secondary">Limpar</a>
     </div>
-{% endfor %}
-  
-  <div class="col-12 d-flex justify-content-between ">
-    <div class="flex-grow-0">
-      <a href="{% url 'list_schedules' %}"  class="btn btn-secondary">Cancela</a>
-      <a href="{% url 'create_schedule' %}" class="btn btn-secondary">Limpar</a>
-    </div>
-    <button type="submit" class="btn btn-primary" id="liveToastBtn">Agendar</button>
+    <button type="submit" class="btn btn-primary my-2" id="liveToastBtn">Cadastrar Agendamento</button>
   </div>
 </form>
 
