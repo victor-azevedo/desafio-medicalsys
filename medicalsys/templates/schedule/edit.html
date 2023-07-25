@@ -1,26 +1,35 @@
 {% extends 'base_dashboard.html' %}
+
 {% block dashboard_content %}
 
 <h2>Editar Agendamento</h2>
-<form class="row g-3" action="{% url 'edit_schedule' pk=schedule.id %}" method="POST">
+
+<form class="row g-3 my-3" action="{% url 'edit_schedule' pk=schedule.id %}" method="POST">
   {% csrf_token %}
 
   {% for field in form %}
-    <div class="col-12">
-        {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
-    </div>
-{% endfor %}
-  
-  <div class="col-12 d-flex justify-content-between ">
-    <div class="flex-grow-0">
-      <a href="{% url 'list_schedules' %}"  class="btn btn-secondary">Cancela</a>
-      <a href="{% url 'edit_schedule' pk=schedule.id %}" class="btn btn-secondary">Desfazer</a>
-    </div>
-    <button type="submit" class="btn btn-primary" id="liveToastBtn">Atualizar</button>
+  <div class="col-12">
+    {{ field.errors }}
+    {{ field.label_tag }} {{ field }}
   </div>
+  {% endfor %}
+
+  <div class="row g-3">
+    <div class="col d-flex">
+      <a href="{% url 'delete_schedule' pk=schedule.id %}" class="btn btn-danger flex-grow-1 ">Deletar</a>
+    </div>
+    <div class="col d-flex gap-2">
+      <a href="{% url 'list_schedules' %}"
+        class="btn btn-secondary flex-grow-1 d-flex align-items-center justify-content-center">Cancela</a>
+      <a href="{% url 'edit_schedule' pk=schedule.id %}"
+        class="btn btn-secondary flex-grow-1 d-flex align-items-center justify-content-center">Desfazer</a>
+    </div>
+    <div class="col d-flex">
+      <button type="submit" class=" btn btn-primary flex-grow-1">Atualizar</button>
+    </div>
+  </div>
+
 </form>
 
-{{schedule.date}}
 
 {% endblock dashboard_content %}

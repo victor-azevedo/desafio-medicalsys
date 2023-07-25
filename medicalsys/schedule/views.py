@@ -15,7 +15,7 @@ def create_schedule(request):
             form.save()
             form = ScheduleForm()
             messages.success(request, 'Agendamento realizado com sucesso!')
-            return redirect('home')
+            return redirect('list_schedules')
         else:
             messages.error(request, 'Dados inválidos!')
             context = {'form': form}
